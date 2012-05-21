@@ -10,7 +10,7 @@ namespace RavenDb_Stockholm.Controllers
 			return Json(Session.Query<T>().ToList());
 		}
 
-		public ActionResult Details(int id)
+		public virtual ActionResult Details(int id)
 		{
 			return Json(Session.Load<T>(id));
 		}

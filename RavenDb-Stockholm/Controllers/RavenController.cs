@@ -2,6 +2,8 @@
 using System.Web.Mvc;
 using Raven.Client;
 using Raven.Client.Document;
+using Raven.Client.Indexes;
+using RavenDb_Stockholm.Indexes;
 
 namespace RavenDb_Stockholm.Controllers
 {
@@ -32,10 +34,12 @@ namespace RavenDb_Stockholm.Controllers
 		{
 			var documentStore = new DocumentStore
 			{
-				Url = "http://localhost:8080", 
-				DefaultDatabase = "CornerStone"
+				ConnectionStringName = "RavenDB",
 			};
 			documentStore.Initialize();
+
+			IndexCreation.CreateIndexes(typeof(Instructors_ByName).Assembly, documentStore);
+
 			return documentStore;
 		}
 
@@ -44,6 +48,7 @@ namespace RavenDb_Stockholm.Controllers
 		protected override void OnActionExecuting(ActionExecutingContext filterContext)
 		{
 			Session = Store.OpenSession();
+			Session.Advanced.UseOptimisticConcurrency = true;
 		}
 
 		protected override void OnActionExecuted(ActionExecutedContext filterContext)
