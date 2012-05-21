@@ -86,6 +86,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Indexes\Courses_ByInstroctor.cs" />
     <Compile Include="Indexes\Instructors_ByName.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Instructor.cs" />

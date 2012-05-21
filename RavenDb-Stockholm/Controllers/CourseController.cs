@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using RavenDb_Stockholm.Indexes;
 using RavenDb_Stockholm.Models;
 using System.Linq;
 using Raven.Client.Linq;
@@ -8,6 +9,13 @@ namespace RavenDb_Stockholm.Controllers
 {
 	public class CourseController : RavenCrudController<Course>
 	{
+		public ActionResult ByInstructor()
+		{
+			var results = Session.Query<Courses_ByInstructor.Result, Courses_ByInstructor>()
+				.ToList();
+			return Json(results);
+		}
+
 		public override ActionResult Details(int id)
 		{
 			var course = Session
