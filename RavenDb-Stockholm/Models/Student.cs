@@ -8,6 +8,8 @@ namespace RavenDb_Stockholm.Models
 
         public string Email { get; set; }
 
+		public string FavoriteInstructor { get; set; }
+
         public string[] Interests { get; set; }
 
         public List<string> Courses { get; set; }

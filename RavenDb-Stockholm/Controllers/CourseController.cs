@@ -9,28 +9,22 @@ namespace RavenDb_Stockholm.Controllers
 {
 	public class CourseController : RavenCrudController<Course>
 	{
+
+		public ActionResult Search(string q)
+		{
+			var results = Session.Query<Courses_Search2.Result, Courses_Search2>()
+				.Search(x=>x.Query, q)
+				.As<Course>()
+				.ToList();
+
+			return Json(results);
+		}
+
 		public ActionResult ByInstructor()
 		{
 			var results = Session.Query<Courses_ByInstructor.Result, Courses_ByInstructor>()
 				.ToList();
 			return Json(results);
-		}
-
-		public override ActionResult Details(int id)
-		{
-			var course = Session
-				.Include<Course>(x => x.Instructor)
-				.Load<Course>(id);
-
-			var instructor = Session.Load<Instructor>(id);
-
-			Session.Advanced.GetMetadataFor(instructor)["User"] = "ayende";
-
-			return Json(new
-			{
-				CourseName = course.Name,
-				InstructorName = instructor.Name
-			});
 		}
 
 		public ActionResult Tech(string name)
@@ -44,10 +38,10 @@ namespace RavenDb_Stockholm.Controllers
 
 		public ActionResult Create(string name, string instructor, string[] tech)
 		{
-			var course = new Course
+			var course = new Course  
 			{
 				Name = name,
-				Content = new string('*', 10),
+				Content = new string('*', 11),
 				Date = DateTime.Today,
 				Instructor = instructor,
 				Location = "Stockholm",

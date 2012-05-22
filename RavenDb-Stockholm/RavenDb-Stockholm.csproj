@@ -87,7 +87,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Indexes\Courses_ByInstroctor.cs" />
+    <Compile Include="Indexes\Courses_Search.cs" />
+    <Compile Include="Indexes\Courses_Search2.cs" />
     <Compile Include="Indexes\Instructors_ByName.cs" />
+    <Compile Include="Indexes\Instructor_Stats.cs" />
+    <Compile Include="Indexes\People_Search.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Instructor.cs" />
     <Compile Include="Models\Student.cs" />
@@ -179,7 +183,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>63854</DevelopmentServerPort>
+          <DevelopmentServerPort>39151</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
